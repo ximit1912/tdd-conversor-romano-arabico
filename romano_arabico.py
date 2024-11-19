@@ -7,8 +7,16 @@ def romano_para_arabico(romano):
     }
 
     total = 0
+    valor_anterior = 0
+
     for char in romano:
-        total += romano_para_inteiro.get(char, 0)
+        valor_atual = romano_para_inteiro.get(char, 0)
+        if valor_atual > valor_anterior:
+            #subtrai o valor anterior (pois foi somado antes) e adiciona a diferença
+            total += valor_atual - 2 * valor_anterior
+        else:
+            total += valor_atual
+        valor_anterior = valor_atual
     
     return total
     
